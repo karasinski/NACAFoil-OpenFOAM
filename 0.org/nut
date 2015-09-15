@@ -17,20 +17,20 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform 5e-7;
 
 boundaryField
 {
     airfoil
     {
-        type            nutUSpaldingWallFunction;
+        type            nutSpalartAllmarasWallFunction;
         value           uniform 0;
     }
 
     "(front|back|topAndBottom|inlet|outlet)"
     {
         type            calculated;
-        value           uniform 0;
+        value           uniform $internalField;
     }
 }
 
