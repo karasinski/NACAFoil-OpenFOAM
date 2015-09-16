@@ -23,14 +23,19 @@ boundaryField
 {
     airfoil
     {
-        type            nutSpalartAllmarasWallFunction;
+        type            fixedValue;
         value           uniform 0;
     }
 
-    "(front|back|topAndBottom|inlet|outlet)"
+    "(topAndBottom|inlet|outlet)"
     {
-        type            calculated;
-        value           uniform $internalField;
+        type             freestream;
+        freestreamValue  $internalField;
+    }
+
+    "(front|back)"
+    {
+        type            empty;
     }
 }
 
