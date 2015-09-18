@@ -55,7 +55,7 @@ def read_Re():
 
 def read_yplus():
     """Read average yPlus from log.yPlus."""
-    with open("log.yPlus") as f:
+    with open("log.yPlusRAS") as f:
         for line in f.readlines():
             line = line.split()
             try:
@@ -81,9 +81,9 @@ def alpha_sweep(foil, start, stop, step, Re=2e5, append=False):
         call(["./Allrun", foil, str(alpha)])
         d = read_force_coeffs()
         d["alpha_deg"] = alpha
-        d.update(read_turbulence_fields())
+        #d.update(read_turbulence_fields())
         d["Re"] = read_Re()
-        d["mean_yplus"] = read_yplus()
+        #d["mean_yplus"] = read_yplus()
         df = df.append(d, ignore_index=True)
         df.to_csv(df_fname, index=False)
 
